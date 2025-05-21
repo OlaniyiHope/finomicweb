@@ -51,9 +51,9 @@ const Inquiries = () => {
         // Check if chat data exists and update the messages state
         if (response.data && response.data.data) {
           const chatMessages = response.data.data.map((msg) => ({
-            sender: msg.sender,
-            text: msg.user_message,
-            aiResponse: msg.ai_response,
+            sender: msg.userId, // or msg.sender if you have it
+            text: msg.userMessage, // Correct property name
+            aiResponse: msg.aiResponse,
           }));
           // setMessages(chatMessages);
           setMessages(chatMessages.reverse());
@@ -131,9 +131,12 @@ const Inquiries = () => {
         }
       );
 
+      const chatData = response.data.data;
+      const lastMessage = chatData[chatData.length - 1];
+
       const aiReply = {
         sender: "ai",
-        text: response.data.data.ai_response || "Received",
+        text: lastMessage?.aiResponse || "Received",
       };
 
       setMessages((prev) => [...prev, aiReply]);
