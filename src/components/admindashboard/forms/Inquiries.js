@@ -131,12 +131,18 @@ const Inquiries = () => {
         }
       );
 
+      // const chatData = response.data.data;
+      // const lastMessage = chatData[chatData.length - 1];
+
+      // const aiReply = {
+      //   sender: "ai",
+      //   text: lastMessage.aiResponse || "Received",
+      // };
       const chatData = response.data.data;
-      const lastMessage = chatData[chatData.length - 1];
 
       const aiReply = {
         sender: "ai",
-        text: lastMessage?.aiResponse || "Received",
+        text: chatData.aiResponse || "Received",
       };
 
       setMessages((prev) => [...prev, aiReply]);
@@ -197,15 +203,15 @@ const Inquiries = () => {
                   backgroundColor: "#212121",
                 }}
               >
-                <div className="chat-messages">
+                {/*}   <div className="chat-messages">
                   {messages.map((msg, index) => (
                     <Fragment key={index}>
-                      {/* User Message */}
+              
                       <div className="message user-message">
                         <div className="message-text">{msg.text}</div>
                       </div>
 
-                      {/* AI Response (if exists) */}
+
                       {msg.aiResponse && (
                         <div className="message ai-message">
                           <div className="message-text">{msg.aiResponse}</div>
@@ -213,9 +219,27 @@ const Inquiries = () => {
                       )}
                     </Fragment>
                   ))}
+                </div>*/}
+                <div className="chat-messages">
+                  {messages.map((msg, index) => (
+                    <Fragment key={index}>
+                      <div className="message user-message">
+                        <div className="message-text">{msg.text}</div>
+                      </div>
+
+                      {msg.aiResponse && (
+                        <div
+                          className={`message ${
+                            msg.type === "user" ? "user-message" : "ai-message"
+                          }`}
+                        >
+                          <div className="message-text">{msg.aiResponse}</div>
+                        </div>
+                      )}
+                    </Fragment>
+                  ))}
                 </div>
 
-                {/* Message Input */}
                 <form
                   onSubmit={handleSendMessage}
                   className="chat-input-area"
