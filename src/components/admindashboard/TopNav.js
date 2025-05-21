@@ -783,7 +783,6 @@ const TopNav = () => {
 
                     <li className="submenu">
                       <a
-                        href="#"
                         onClick={() => setShowLogoutModal(true)}
                         style={{
                           display: "flex",
@@ -795,7 +794,10 @@ const TopNav = () => {
                         }}
                       >
                         <FiLogOut size={20} color="white" />
-                        <span style={{ fontSize: "14px", color: "white" }}>
+                        <span
+                          style={{ fontSize: "14px", color: "white" }}
+                          onClick={() => setShowLogoutModal(true)}
+                        >
                           Logout
                         </span>
                       </a>
@@ -851,7 +853,7 @@ const TopNav = () => {
           <a className="dropdown-item" href="/settings">
             Settings
           </a>
-          <a className="dropdown-item" href="/login">
+          <a className="dropdown-item" onClick={() => setShowLogoutModal(true)}>
             Logout
           </a>
         </div>

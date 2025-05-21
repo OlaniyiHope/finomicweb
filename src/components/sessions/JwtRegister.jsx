@@ -50,7 +50,8 @@ const JwtRegister = () => {
       const response = await register(
         values.fullname,
         values.email,
-        values.password
+        values.phone, // ✅ phone comes before password
+        values.password // ✅ password comes last
       );
 
       if (response.status === 201) {
@@ -165,7 +166,7 @@ const JwtRegister = () => {
                         </h3>
                       </div>
                       <div className="form-login mb-3">
-                        <label className="form-label"> Name</label>
+                        <label className="form-label"> Fullname</label>
                         <input
                           type="text"
                           name="fullname"
@@ -173,7 +174,7 @@ const JwtRegister = () => {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className="form-control"
-                          placeholder="Enter your name"
+                          placeholder="Enter your full name"
                         />
                         {touched.fullname && errors.fullname && (
                           <small className="text-danger">

@@ -501,17 +501,12 @@ export const AuthProvider = ({ children }) => {
   //     throw error;
   //   }
   // };
-  const register = async (fullname, email, password) => {
+  const register = async (fullname, email, phone, password) => {
     try {
-      const nameParts = fullname.trim().split(" ");
-      const firstname = nameParts[0];
-      const lastname = nameParts.slice(1).join(" ") || " ";
-
       const payload = {
-        firstname,
-        lastname,
+        fullname,
         email,
-        phone: "0000000000", // You can collect this from the form later
+        phone,
         password,
       };
 
