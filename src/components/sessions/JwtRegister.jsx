@@ -22,6 +22,7 @@ const initialValues = {
   email: "",
   password: "",
   fullname: "",
+  phone: "",
   isGoogleSignUp: false,
 };
 
@@ -33,6 +34,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters long")
     .required("Password is required!"),
+  phone: Yup.string().required("Phone number is required"),
 });
 
 const JwtRegister = () => {
@@ -66,6 +68,7 @@ const JwtRegister = () => {
       setLoading(false);
     }
   };
+
   const redirectToGoogle = () => {
     console.log("Redirecting to Google OAuth...");
     window.location.href = `${process.env.REACT_APP_API_URL}/api/google`;
@@ -193,6 +196,22 @@ const JwtRegister = () => {
                           <small className="text-danger">{errors.email}</small>
                         )}
                       </div>
+                      <div className="form-login mb-3">
+                        <label className="form-label">Phone Number</label>
+                        <input
+                          type="number"
+                          name="phone"
+                          value={values.phone}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className="form-control"
+                          placeholder="Enter your phone number"
+                        />
+                        {touched.phone && errors.phone && (
+                          <small className="text-danger">{errors.phone}</small>
+                        )}
+                      </div>
+
                       <div className="form-login mb-3">
                         <label className="form-label">Password</label>
                         <div className="pass-group">

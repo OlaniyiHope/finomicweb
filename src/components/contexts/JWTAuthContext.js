@@ -470,11 +470,52 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Register method to create a new user and set session
+  // const register = async (fullname, email, password) => {
+  //   try {
+  //     const payload = { fullname, email, password };
+
+  //     const response = await axios.post(`${apiUrl}/api/auth/signup`, payload);
+
+  //     if (response.status === 201) {
+  //       const { token, user, refreshToken } = response.data;
+
+  //       // Save token and user in localStorage
+  //       setSession(token, refreshToken);
+  //       localStorage.setItem("user", JSON.stringify(user));
+
+  //       // Dispatch REGISTER action to update state
+  //       dispatch({
+  //         type: "REGISTER",
+  //         payload: { user },
+  //       });
+
+  //       return response;
+  //     } else {
+  //       return response;
+  //     }
+  //   } catch (error) {
+  //     console.error(
+  //       "Registration error:",
+  //       error.response?.data?.message || error.message
+  //     );
+  //     throw error;
+  //   }
+  // };
   const register = async (fullname, email, password) => {
     try {
-      const payload = { fullname, email, password };
+      const nameParts = fullname.trim().split(" ");
+      const firstname = nameParts[0];
+      const lastname = nameParts.slice(1).join(" ") || " ";
 
-      const response = await axios.post(`${apiUrl}/api/auth/signup`, payload);
+      const payload = {
+        firstname,
+        lastname,
+        email,
+        phone: "0000000000", // You can collect this from the form later
+        password,
+      };
+
+      const response = await axios.post(`${apiUrl}/api/auth/register`, payload);
 
       if (response.status === 201) {
         const { token, user, refreshToken } = response.data;
@@ -483,7 +524,6 @@ export const AuthProvider = ({ children }) => {
         setSession(token, refreshToken);
         localStorage.setItem("user", JSON.stringify(user));
 
-        // Dispatch REGISTER action to update state
         dispatch({
           type: "REGISTER",
           payload: { user },

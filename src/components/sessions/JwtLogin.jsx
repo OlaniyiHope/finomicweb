@@ -12,28 +12,24 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./login.css";
 import axios from "axios";
 import googlelogo from "./googlelogo.svg";
-import micro from "./micro.svg";
-import apple from "./apple.svg";
-import fav from "./ourcolor.png";
+
 import * as Yup from "yup";
 import GoogleOauth from "./GoogleOauth";
-// inital login credentials
+
 const initialValues = {
   email: "",
   password: "",
 };
 
 const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required!"),
   password: Yup.string()
     .min(6, "Password must be 6 character length")
     .required("Password is required!"),
-  // email: Yup.string()
-  //   .email("Invalid Email address")
-  //   .required("Email is required!"),
-  // username: Yup.string()
-  //   .email("Invalid Username")
-  //   .required("Username is required!"),
 });
+
 const JwtLogin = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +37,7 @@ const JwtLogin = () => {
 
   const { login } = useAuth();
   const handleFormSubmit = async (values) => {
+    console.log("Login Form Submitted:", values); // <-- Add this
     setLoading(true);
     try {
       const response = await login(values.email, values.password);
