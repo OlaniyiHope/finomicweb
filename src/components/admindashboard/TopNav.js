@@ -226,9 +226,6 @@ const TopNav = () => {
         className="top-nav mobile-only"
         style={{ backgroundColor: "#202123", textDecoration: "none" }}
       >
-        {/*<a className="logo" href="/" style={{ textDecoration: "none" }}>
-          Life Mirror
-        </a>*/}
         <button onClick={handleSidebarToggle} className="text-white text-2xl">
           <FiMenu />
         </button>
@@ -823,23 +820,22 @@ const TopNav = () => {
             }}
           />
         )}
-        <div className="nav-icons">
+
+        <div className="nav-icons flex items-center gap-2">
           {/* Notification Icon */}
-          <li className="nav-item dropdown">
-            <a href="#" className="dropdown-toggle">
-              <FiBell className="text-white text-2xl" />
-              {/*} <span className="badge">2</span>*/}
-            </a>
-          </li>
-          <a
-            href="javascript:void(0);"
-            className="dropdown-toggle"
-            onClick={toggleMobileMenu}
-          >
-            <FiUser className="text-white text-2xl" />
+          <a href="#" className="relative">
+            <FiBell className="text-white text-2xl" />
+            <span className="badge">2</span>
           </a>
 
-          {/* Settings Icon */}
+          {/* User Icon */}
+          <a
+            href="javascript:void(0);"
+            onClick={toggleMobileMenu}
+            className="text-white text-2xl"
+          >
+            <FiUser />
+          </a>
         </div>
 
         {/* Profile Dropdown Menu */}
@@ -858,6 +854,45 @@ const TopNav = () => {
           </a>
         </div>
       </div>
+
+      {/* Bottom Navigation (Visible on Mobile Only) */}
+      {/*}  <div className="bottom-nav mobile-only">
+        <ul className="nav">
+          <li className="nav-item">
+            <a href="/vision">
+              <FiHome />
+
+              <span>Home</span>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/brain-dump">
+              <BsLightbulb />
+              <span>Idea</span>
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a href="/refinement">
+              <FiEdit />
+              <span>Refinement</span>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/retrospect">
+              <FiClock />
+              <span>Retrospect</span>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/sprint">
+              <FiFlag />
+              <span>Sprint</span>
+            </a>
+          </li>
+        </ul>
+      </div>*/}
+      {/* Main Content */}
     </div>
   );
 };

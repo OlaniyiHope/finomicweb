@@ -29,7 +29,7 @@ const Inquiries = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const [messages, setMessages] = useState([
-    { sender: "ai", text: "Hello! How can I assist you today?" },
+    // { sender: "ai", text: "Hello! How can I assist you today?" },
   ]);
   const [newMessage, setNewMessage] = useState("");
   const [chatId, setChatId] = useState(uuidv4()); // Generate chatId once
@@ -193,7 +193,8 @@ const Inquiries = () => {
               backgroundColor: "#212121",
               marginBottom: "0px",
               height: "100%",
-              marginBottom: "0",
+
+              paddingBottom: "30px",
             }}
           >
             <div className="content">
@@ -240,37 +241,14 @@ const Inquiries = () => {
                   ))}
                 </div>
 
-                <form
-                  onSubmit={handleSendMessage}
-                  className="chat-input-area"
-                  style={{ backgroundColor: "#212121" }}
-                >
-                  {/* Show selected file */}
+                <form onSubmit={handleSendMessage} className="chat-input-area">
+                  {/* Selected file preview */}
                   {selectedFile && (
-                    <div
-                      style={{
-                        marginBottom: "8px",
-                        backgroundColor: "#333",
-                        padding: "8px",
-                        borderRadius: "6px",
-                        color: "white",
-                        fontSize: "13px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
+                    <div className="chat-upload-preview">
                       <span>{selectedFile.name}</span>
                       <button
                         type="button"
                         onClick={() => setSelectedFile(null)}
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                          color: "#ff5c5c",
-                          fontSize: "14px",
-                          cursor: "pointer",
-                        }}
                       >
                         ✕
                       </button>
@@ -282,26 +260,16 @@ const Inquiries = () => {
                     placeholder="Send a message..."
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    style={{
-                      resize: "none",
-                      border: "none",
-                      outline: "none",
-                      backgroundColor: "transparent",
-                      color: "white",
-                      fontSize: "14px",
-                      width: "100%",
-                      minHeight: "60px",
-                    }}
                     rows={3}
                   />
 
+                  {/* Hidden file/image inputs */}
                   <input
                     type="file"
                     ref={fileInputRef}
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                   />
-
                   <input
                     type="file"
                     ref={imageInputRef}
@@ -309,41 +277,21 @@ const Inquiries = () => {
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                   />
-                  {/* Action buttons (bottom right) */}
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      marginTop: "8px",
-                    }}
-                  >
-                    <div style={{ display: "flex", gap: "10px" }}>
+
+                  {/* Action buttons */}
+                  <div className="chat-input-actions">
+                    <div className="chat-icon-buttons">
                       <button
                         type="button"
                         title="Upload"
                         style={iconButtonStyle}
                         onClick={toggleUploadMenu}
-                        // onClick={handleUploadClick}
                       >
                         <FaPlus size={16} />
                       </button>
 
                       {showUploadMenu && (
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: "70px",
-
-                            background: "#333",
-                            borderRadius: "8px",
-                            padding: "10px",
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-                            zIndex: 10,
-                            color: "white",
-                            minWidth: "160px",
-                          }}
-                        >
+                        <div className="upload-menu">
                           <div
                             style={{ padding: "8px", cursor: "pointer" }}
                             onClick={handleFileClick}
@@ -377,20 +325,7 @@ const Inquiries = () => {
                       </button>
                     </div>
 
-                    <button
-                      type="submit"
-                      className="send-button"
-                      style={{
-                        backgroundColor: "#01007a",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "6px",
-                        padding: "8px 16px",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
-                      }}
-                    >
+                    <button type="submit" className="chat-send-button">
                       <FiSend size={16} />
                       Send
                     </button>
