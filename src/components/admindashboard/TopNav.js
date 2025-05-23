@@ -841,7 +841,6 @@ const TopNav = () => {
           {/* Notification Icon */}
           <a href="#" className="relative">
             <FiBell className="text-white text-2xl" />
-            <span className="badge">2</span>
           </a>
 
           {/* User Icon */}
