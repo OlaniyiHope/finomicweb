@@ -114,7 +114,7 @@ const JwtLogin = () => {
     <>
       <ToastContainer position="top-center" />
       <body class="account-page">
-        <div class="main-wrapper">
+        <div class="main-wrapper" style={{ backgroundColor: "white" }}>
           <div class="account-content">
             <div class="login-wrapper bg-img">
               <div class="login-content logos">

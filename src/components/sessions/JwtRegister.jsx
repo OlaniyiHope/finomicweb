@@ -124,7 +124,7 @@ const JwtRegister = () => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <div className="main-wrapper">
+      <div className="main-wrapper" style={{ backgroundColor: "white" }}>
         <div className="account-content">
           <div className="login-wrapper bg-img">
             <div className="login-content logos">
