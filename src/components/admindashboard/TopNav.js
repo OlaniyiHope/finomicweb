@@ -139,7 +139,18 @@ const TopNav = () => {
               <FiPlus />
             </button>
           </div>
-
+          <div className="logo finomic-logo">
+            <a
+              style={{
+                color: "white",
+                fontWeight: "800",
+                paddingLeft: "30px",
+                fontSize: "20px",
+              }}
+            >
+              Finomic AI
+            </a>
+          </div>
           <ul className="nav user-menu ">
             <div className="flex items-center gap-4 px-4 text-white">
               {/* Share Button */}

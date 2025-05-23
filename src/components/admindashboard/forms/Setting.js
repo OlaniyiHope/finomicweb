@@ -17,6 +17,9 @@ import Profile from "./Profile";
 import General from "./General";
 import "./point.css";
 import Notify from "./Notify";
+import Voice from "./Voice";
+import Data from "./Data";
+import Security from "./Security";
 const Setting = () => {
   const { user } = useAuth(); // Get authenticated user from context
   const [activeSetting, setActiveSetting] = useState("general"); // or "general"
@@ -204,6 +207,9 @@ const Setting = () => {
                       {activeSetting === "profile" && <Profile />}
                       {activeSetting === "general" && <General />}
                       {activeSetting === "notification" && <Notify />}
+                      {activeSetting === "speech" && <Voice />}
+                      {activeSetting === "data" && <Data />}
+                      {activeSetting === "security" && <Security />}
                     </div>
                   </div>
                 </div>

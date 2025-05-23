@@ -22,6 +22,12 @@ body {
 } */
 
 /* Shadow */
+/* Hide on small screens */
+@media (max-width: 767px) {
+  .finomic-logo {
+    display: none;
+  }
+}
 
 .shadowss {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1) !important;
