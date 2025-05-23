@@ -196,7 +196,6 @@ const TopNav = () => {
                 style={{ size: "30px", fontSize: "30px" }}
               >
                 <FiBell className="text-white text-2xl" />
-                <span className="badge">2</span>
               </a>
             </li>
 
