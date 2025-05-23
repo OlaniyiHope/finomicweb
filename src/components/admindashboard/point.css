@@ -174,17 +174,24 @@ body {
   display: none; /* Chrome, Safari, Opera */
 }
 
-/* Chat input area fixed at bottom */
 .chat-input-area {
   position: fixed;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #1e1e1e;
-  /* padding: 15px; */
-  width: 80%;
-  margin: auto;
+  width: 98%;
   border-top: 1px solid #444;
   z-index: 100;
 }
+
+/* Larger screen override */
+@media (min-width: 768px) {
+  .chat-input-area {
+    width: 80%;
+  }
+}
+
 html,
 body,
 #root {
