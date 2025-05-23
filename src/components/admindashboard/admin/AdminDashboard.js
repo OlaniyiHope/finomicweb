@@ -182,165 +182,141 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <body>
-        <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
-          <SideNav />
-          <TopNav />
-          <div
-            className="page-wrapper"
-            style={{
-              marginTop: "10px",
-              backgroundColor: "#212121",
-              marginBottom: "0px",
-            }}
-          >
-            <div className="content">
-              <div
-                className="chat-container"
-                style={{
-                  backgroundColor: "#212121",
-                  paddingBottom: "40px",
-                }}
-              >
-                <div className="chat-inner">
-                  {/*}   <div className="chat-messages">
+      <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <SideNav />
+        <TopNav />
+        <div
+          className="page-wrapper"
+          style={{
+            marginTop: "10px",
+            backgroundColor: "#212121",
+            marginBottom: "0px",
+          }}
+        >
+          <div className="content">
+            <div
+              className="chat-container"
+              style={{
+                backgroundColor: "#212121",
+                paddingBottom: "40px",
+              }}
+            >
+              <div className="chat-inner">
+                <div className="chat-messages">
                   {messages.map((msg, index) => (
                     <Fragment key={index}>
-              
                       <div className="message user-message">
                         <div className="message-text">{msg.text}</div>
                       </div>
 
-
                       {msg.aiResponse && (
-                        <div className="message ai-message">
+                        <div
+                          className={`message ${
+                            msg.type === "user" ? "user-message" : "ai-message"
+                          }`}
+                        >
                           <div className="message-text">{msg.aiResponse}</div>
                         </div>
                       )}
                     </Fragment>
                   ))}
-                </div>*/}
-                  <div className="chat-messages">
-                    {messages.map((msg, index) => (
-                      <Fragment key={index}>
-                        <div className="message user-message">
-                          <div className="message-text">{msg.text}</div>
-                        </div>
+                </div>
 
-                        {msg.aiResponse && (
-                          <div
-                            className={`message ${
-                              msg.type === "user"
-                                ? "user-message"
-                                : "ai-message"
-                            }`}
-                          >
-                            <div className="message-text">{msg.aiResponse}</div>
-                          </div>
-                        )}
-                      </Fragment>
-                    ))}
-                  </div>
-
-                  <form
-                    onSubmit={handleSendMessage}
-                    className="chat-input-area"
-                  >
-                    {/* Selected file preview */}
-                    {selectedFile && (
-                      <div className="chat-upload-preview">
-                        <span>{selectedFile.name}</span>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedFile(null)}
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    )}
-
-                    <textarea
-                      className="chat-textarea"
-                      placeholder="Send a message..."
-                      value={newMessage}
-                      onChange={(e) => setNewMessage(e.target.value)}
-                      rows={3}
-                    />
-
-                    {/* Hidden file/image inputs */}
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-                    <input
-                      type="file"
-                      ref={imageInputRef}
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-
-                    {/* Action buttons */}
-                    <div className="chat-input-actions">
-                      <div className="chat-icon-buttons">
-                        <button
-                          type="button"
-                          title="Upload"
-                          style={iconButtonStyle}
-                          onClick={toggleUploadMenu}
-                        >
-                          <FaPlus size={16} />
-                        </button>
-
-                        {showUploadMenu && (
-                          <div className="upload-menu">
-                            <div
-                              style={{ padding: "8px", cursor: "pointer" }}
-                              onClick={handleFileClick}
-                            >
-                              📁 Upload file
-                            </div>
-                            <div
-                              style={{ padding: "8px", cursor: "pointer" }}
-                              onClick={handleImageClick}
-                            >
-                              🖼️ Upload image
-                            </div>
-                            <div
-                              style={{
-                                padding: "8px",
-                                color: "gray",
-                                cursor: "not-allowed",
-                              }}
-                            >
-                              🔗 Connect to Google Drive
-                            </div>
-                          </div>
-                        )}
-
-                        <button
-                          type="button"
-                          title="Voice"
-                          style={iconButtonStyle}
-                        >
-                          <FaMicrophone size={16} />
-                        </button>
-                      </div>
-
-                      <button type="submit" className="chat-send-button">
-                        <FiSend size={16} />
-                        Send
+                <form onSubmit={handleSendMessage} className="chat-input-area">
+                  {/* Selected file preview */}
+                  {selectedFile && (
+                    <div className="chat-upload-preview">
+                      <span>{selectedFile.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedFile(null)}
+                      >
+                        ✕
                       </button>
                     </div>
-                  </form>
-                </div>
+                  )}
+
+                  <textarea
+                    className="chat-textarea"
+                    placeholder="Send a message..."
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    rows={3}
+                  />
+
+                  {/* Hidden file/image inputs */}
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+                  <input
+                    type="file"
+                    ref={imageInputRef}
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+
+                  {/* Action buttons */}
+                  <div className="chat-input-actions">
+                    <div className="chat-icon-buttons">
+                      <button
+                        type="button"
+                        title="Upload"
+                        style={iconButtonStyle}
+                        onClick={toggleUploadMenu}
+                      >
+                        <FaPlus size={16} />
+                      </button>
+
+                      {showUploadMenu && (
+                        <div className="upload-menu">
+                          <div
+                            style={{ padding: "8px", cursor: "pointer" }}
+                            onClick={handleFileClick}
+                          >
+                            📁 Upload file
+                          </div>
+                          <div
+                            style={{ padding: "8px", cursor: "pointer" }}
+                            onClick={handleImageClick}
+                          >
+                            🖼️ Upload image
+                          </div>
+                          <div
+                            style={{
+                              padding: "8px",
+                              color: "gray",
+                              cursor: "not-allowed",
+                            }}
+                          >
+                            🔗 Connect to Google Drive
+                          </div>
+                        </div>
+                      )}
+
+                      <button
+                        type="button"
+                        title="Voice"
+                        style={iconButtonStyle}
+                      >
+                        <FaMicrophone size={16} />
+                      </button>
+                    </div>
+
+                    <button type="submit" className="chat-send-button">
+                      <FiSend size={16} />
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </body>
+      </div>
     </div>
   );
 };
