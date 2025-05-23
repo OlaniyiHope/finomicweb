@@ -161,10 +161,7 @@ body {
   -ms-overflow-style: none; /* IE 10+ */
 }
 html,
-html,
 body {
-  margin: 0;
-  padding: 0;
   max-width: 100%;
   overflow-x: hidden !important;
 }
@@ -177,25 +174,26 @@ body {
   display: none; /* Chrome, Safari, Opera */
 }
 
+/* Chat input area fixed at bottom */
 .chat-input-area {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: #1e1e1e;
+  /* padding: 15px; */
   width: 98%;
   border-top: 1px solid #444;
   z-index: 100;
-  justify-content: center;
 }
-
-/* Larger screen override */
 @media (min-width: 768px) {
   .chat-input-area {
-    width: 60%;
+    width: 80%;
   }
 }
-
+@media (max-width: 768px) {
+  .chat-input-area {
+    position: fixed;
+  }
+}
 html,
 body,
 #root {
