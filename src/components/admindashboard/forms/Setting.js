@@ -19,6 +19,7 @@ import "./point.css";
 import Notify from "./Notify";
 import Voice from "./Voice";
 import Data from "./Data";
+import "./all.css";
 import Security from "./Security";
 const Setting = () => {
   const { user } = useAuth(); // Get authenticated user from context
@@ -66,7 +67,10 @@ const Setting = () => {
                     <div
                       class="sidebars settings-sidebar theiaStickySidebar"
                       id="sidebar2"
-                      style={{ backgroundColor: "#000", border: "none" }}
+                      style={{
+                        backgroundColor: "#000",
+                        border: "none",
+                      }}
                     >
                       <div class="sidebar-inner slimscroll">
                         <div id="sidebar-menu5" class="sidebar-menu">
