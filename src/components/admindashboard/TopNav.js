@@ -216,12 +216,7 @@ const TopNav = () => {
                 className={`dropdown-menu ${desktopMenuOpen ? "show" : ""}`}
                 onClick={(e) => e.stopPropagation()}
               >
-                <a
-                  className="dropdown-item"
-                  onClick={() =>
-                    navigate("/settings", { state: { tab: "profile" } })
-                  }
-                >
+                <a className="dropdown-item" href="/settings">
                   My Profile
                 </a>
                 <a className="dropdown-item" href="/settings">
