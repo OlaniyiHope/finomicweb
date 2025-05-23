@@ -35,6 +35,7 @@ import Connectivity from "./forms/Connectivity";
 import Expense from "./forms/Expense";
 import Loan from "./forms/Loan";
 import Coach from "./forms/Coach";
+import "./point.css";
 
 const AdminRoute = [
   {
