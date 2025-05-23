@@ -217,7 +217,12 @@ const TopNav = () => {
                 className={`dropdown-menu ${desktopMenuOpen ? "show" : ""}`}
                 onClick={(e) => e.stopPropagation()}
               >
-                <a className="dropdown-item" href="/profile">
+                <a
+                  className="dropdown-item"
+                  onClick={() =>
+                    navigate("/settings", { state: { tab: "profile" } })
+                  }
+                >
                   My Profile
                 </a>
                 <a className="dropdown-item" href="/settings">
@@ -854,7 +859,10 @@ const TopNav = () => {
           className={`dropdown-menu ${mobileMenuOpen ? "show" : ""}`}
           onClick={(e) => e.stopPropagation()}
         >
-          <a className="dropdown-item" href="/profile">
+          <a
+            className="dropdown-item"
+            onClick={() => navigate("/settings", { state: { tab: "profile" } })}
+          >
             My Profile
           </a>
           <a className="dropdown-item" href="/settings">
