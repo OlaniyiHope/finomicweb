@@ -173,27 +173,25 @@ body {
 .chat-messages::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
-
-/* Chat input area fixed at bottom */
-.chat-input-area {
-  position: sticky;
-  bottom: 0;
-  background-color: #1e1e1e;
-  /* padding: 15px; */
-  width: 98%;
-  border-top: 1px solid #444;
-  z-index: 100;
-}
 @media (min-width: 768px) {
-  .chat-input-area {
-    width: 80%;
-  }
-}
-@media (max-width: 768px) {
   .chat-input-area {
     position: fixed;
   }
 }
+.chat-input-area {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: "12px";
+  background-color: #1e1e1e;
+  border-top: 1px solid #444;
+  z-index: 100;
+  display: flex;
+  justify-content: center; /* centers the inner wrapper */
+  padding: 0 10px; /* optional: space on mobile sides */
+}
+
 html,
 body,
 #root {
