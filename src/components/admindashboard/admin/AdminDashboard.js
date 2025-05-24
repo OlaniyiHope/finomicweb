@@ -49,14 +49,31 @@ const AdminDashboard = () => {
         console.log(response.data); // Log the full response
 
         // Check if chat data exists and update the messages state
+        // if (response.data && response.data.data) {
+        //   const chatMessages = response.data.data.map((msg) => ({
+        //     sender: msg.userId, // or msg.sender if you have it
+        //     text: msg.userMessage, // Correct property name
+        //     aiResponse: msg.aiResponse,
+        //   }));
+        //   // setMessages(chatMessages);
+        //   setMessages(chatMessages.reverse());
+        // }
         if (response.data && response.data.data) {
-          const chatMessages = response.data.data.map((msg) => ({
-            sender: msg.userId, // or msg.sender if you have it
-            text: msg.userMessage, // Correct property name
-            aiResponse: msg.aiResponse,
-          }));
-          // setMessages(chatMessages);
-          setMessages(chatMessages.reverse());
+          const chatMessages = response.data.data
+            .slice() // Clone the array to avoid mutating original
+            .reverse() // Reverse the chat entries
+            .flatMap((msg) => [
+              {
+                sender: "user",
+                text: msg.userMessage,
+              },
+              {
+                sender: "ai",
+                text: msg.aiResponse,
+              },
+            ]);
+
+          setMessages(chatMessages);
         }
       } catch (err) {
         console.error("Error fetching chat history:", err);
@@ -182,40 +199,56 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
-        <SideNav />
-        <TopNav />
-        <div
-          className="page-wrapper"
-          style={{
-            marginTop: "10px",
-            backgroundColor: "#212121",
-            marginBottom: "0px",
-          }}
-        >
-          <div className="content">
-            <div
-              className="chat-container"
-              style={{
-                backgroundColor: "#212121",
-                paddingBottom: "40px",
-              }}
-            >
-              <div className="chat-inner">
-                <div className="chat-messages">
+      <body>
+        <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
+          <SideNav />
+          <TopNav />
+          <div
+            className="page-wrapper"
+            style={{
+              marginTop: "10px",
+              backgroundColor: "#212121",
+              marginBottom: "0px",
+              height: "100%",
+
+              paddingBottom: "30px",
+            }}
+          >
+            <div className="content">
+              <div
+                className="chat-container"
+                style={{
+                  backgroundColor: "#212121",
+                }}
+              >
+                {/*}   <div className="chat-messages">
                   {messages.map((msg, index) => (
                     <Fragment key={index}>
+              
                       <div className="message user-message">
                         <div className="message-text">{msg.text}</div>
                       </div>
 
+
                       {msg.aiResponse && (
-                        <div
-                          className={`message ${
-                            msg.type === "user" ? "user-message" : "ai-message"
-                          }`}
-                        >
+                        <div className="message ai-message">
                           <div className="message-text">{msg.aiResponse}</div>
+                        </div>
+                      )}
+                    </Fragment>
+                  ))}
+                </div>*/}
+                <div className="chat-messages">
+                  {messages.map((msg, index) => (
+                    <Fragment key={index}>
+                      {msg.sender === "user" && (
+                        <div className="message user-message">
+                          <div className="message-text">{msg.text}</div>
+                        </div>
+                      )}
+                      {msg.sender === "ai" && (
+                        <div className="message ai-message">
+                          <div className="message-text">{msg.text}</div>
                         </div>
                       )}
                     </Fragment>
@@ -316,7 +349,7 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </body>
     </div>
   );
 };

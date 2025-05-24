@@ -205,11 +205,7 @@ const TopNav = () => {
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a
-                href="javascript:void(0);"
-                className="dropdown-toggle"
-                onClick={toggleDesktopMenu}
-              >
+              <a onClick={toggleDesktopMenu}>
                 <FiUser className="text-white text-2xl" />
               </a>
               <div
