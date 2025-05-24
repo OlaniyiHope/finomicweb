@@ -221,23 +221,6 @@ const AdminDashboard = () => {
                   backgroundColor: "#212121",
                 }}
               >
-                {/*}   <div className="chat-messages">
-                  {messages.map((msg, index) => (
-                    <Fragment key={index}>
-              
-                      <div className="message user-message">
-                        <div className="message-text">{msg.text}</div>
-                      </div>
-
-
-                      {msg.aiResponse && (
-                        <div className="message ai-message">
-                          <div className="message-text">{msg.aiResponse}</div>
-                        </div>
-                      )}
-                    </Fragment>
-                  ))}
-                </div>*/}
                 <div className="chat-messages">
                   {messages.map((msg, index) => (
                     <Fragment key={index}>
