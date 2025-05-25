@@ -19,15 +19,17 @@ const Profile = () => {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
+    console.log("Stored user from localStorage:", storedUser);
 
-    if (storedUser?.id) {
+    if (storedUser?._id) {
       axios
-        .get(`${apiUrl}/api/auth/profile/${storedUser.id}`, {
+        .get(`${apiUrl}/api/auth/profile/${storedUser._id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
           },
         })
         .then((res) => {
+          console.log("Profile API response:", res.data);
           setProfile(res.data.data);
           setLoading(false);
         })
@@ -40,9 +42,12 @@ const Profile = () => {
     }
   }, [apiUrl]);
 
+  // Debug: log the current profile on each render
+  console.log("Current profile state:", profile);
+
   return (
     <div>
-      <form action="https://dreamspos.dreamstechnologies.com/html/template/general-settings.html">
+      <form action="">
         <div class="setting-title">
           <h4 style={{ color: "white" }}>Profile Settings</h4>
         </div>
@@ -111,13 +116,16 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 style={{
-                  backgroundColor: "transparent", // ✅ transparent instead of "none"
-                  color: "white", // Optional: white text
-                  border: "1px solid #ccc", // Optional: custom border if needed
+                  backgroundColor: "transparent",
+                  color: "white",
+                  border: "1px solid #ccc",
                 }}
-                // value={user?.fullname}
+                value={profile?.fullname || ""} // use optional chaining and fallback to empty string
+                onChange={(e) => {
+                  setProfile((prev) => ({ ...prev, fullname: e.target.value }));
+                }}
               />
             </div>
           </div>
@@ -129,13 +137,16 @@ const Profile = () => {
               </label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 style={{
-                  backgroundColor: "transparent", // ✅ transparent instead of "none"
-                  color: "white", // Optional: white text
-                  border: "1px solid #ccc", // Optional: custom border if needed
+                  backgroundColor: "transparent",
+                  color: "white",
+                  border: "1px solid #ccc",
                 }}
-                // value={user.fullname}
+                value={profile?.email || ""}
+                onChange={(e) => {
+                  setProfile((prev) => ({ ...prev, email: e.target.value }));
+                }}
               />
             </div>
           </div>
