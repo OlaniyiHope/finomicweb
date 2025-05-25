@@ -209,17 +209,14 @@ const AdminDashboard = () => {
               marginTop: "10px",
               backgroundColor: "#212121",
               marginBottom: "0px",
-              height: "100%",
-
-              paddingBottom: "30px",
             }}
           >
             <div className="content">
               <div
                 className="chat-container"
-                style={{
-                  backgroundColor: "#212121",
-                }}
+                // style={{
+                //   backgroundColor: "#212121",
+                // }}
               >
                 <div className="chat-messages">
                   {messages.map((msg, index) => (
