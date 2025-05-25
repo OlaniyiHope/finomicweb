@@ -54,13 +54,6 @@ const Setting = () => {
                 height: "100%",
               }}
             >
-              <div class="page-header settings-pg-header">
-                <div class="add-item d-flex">
-                  <div class="page-title">
-                    <h4 style={{ color: "white" }}>Settings</h4>
-                  </div>
-                </div>
-              </div>
               <div class="row">
                 <div class="col-xl-12">
                   <div class="settings-wrapper d-flex">
