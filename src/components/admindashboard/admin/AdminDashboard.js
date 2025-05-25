@@ -219,20 +219,35 @@ const AdminDashboard = () => {
                 // }}
               >
                 <div className="chat-messages">
-                  {messages.map((msg, index) => (
-                    <Fragment key={index}>
-                      {msg.sender === "user" && (
-                        <div className="message user-message">
-                          <div className="message-text">{msg.text}</div>
-                        </div>
-                      )}
-                      {msg.sender === "ai" && (
-                        <div className="message ai-message">
-                          <div className="message-text">{msg.text}</div>
-                        </div>
-                      )}
-                    </Fragment>
-                  ))}
+                  {messages.length === 0 ? (
+                    <div className=" placeholder-message">
+                      <div
+                        style={{
+                          color: "white",
+                          fontWeight: "800",
+                          fontSize: "30px",
+                          width: "100%",
+                        }}
+                      >
+                        What can I help you with?
+                      </div>
+                    </div>
+                  ) : (
+                    messages.map((msg, index) => (
+                      <Fragment key={index}>
+                        {msg.sender === "user" && (
+                          <div className="message user-message">
+                            <div className="message-text">{msg.text}</div>
+                          </div>
+                        )}
+                        {msg.sender === "ai" && (
+                          <div className="message ai-message">
+                            <div className="message-text">{msg.text}</div>
+                          </div>
+                        )}
+                      </Fragment>
+                    ))
+                  )}
                 </div>
 
                 <form onSubmit={handleSendMessage} className="chat-input-area">
